@@ -123,8 +123,6 @@ Developer ID:
 Developer Name:
 Git Username:
 Git Email:
-Assigned Area:
-Current Task:
 ```
 
 Valid Developer IDs:
