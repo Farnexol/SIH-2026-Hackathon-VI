@@ -1,0 +1,8 @@
+* text=auto
+*.md text diff=markdown
+*.py text diff=python
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
