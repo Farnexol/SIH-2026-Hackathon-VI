@@ -229,11 +229,15 @@ Vite
 Axios
 Tailwind CSS
 Lucide React
+Framer Motion (for animations/transitions)
+Recharts (for data visualization)
 ```
 
 Lucide React is the default free icon library.
 
 Do not introduce another icon library unless explicitly required.
+
+> **CRITICAL RULE:** All frontend work MUST strictly adhere to the UI/UX specifications defined in `./AI/4_design_system.md`. Review this file before creating any pages or components.
 
 ## Backend
 

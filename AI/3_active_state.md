@@ -127,6 +127,7 @@ Unified frontend for organization headmasters (Admins) and teachers (Users) usin
 | Portal     | [FILL IN]         | [FILL IN] | `./Client/Portal/`     |
 | Server     | [FILL IN]         | [FILL IN] | `./Server/`            |
 | AI         | [FILL IN]         | [FILL IN] | `./AI/`                |
+| Design     | [FILL IN]         | [FILL IN] | `./AI/4_design_system.md` |
 | Database   | [FILL IN]         | [FILL IN] | `./Database/`          |
 
 ---
@@ -405,6 +406,49 @@ Testing:
 
 ```text
 Verified successful updating of context documentation and folder creation.
+```
+
+Git Status:
+
+```text
+Pending push
+```
+
+---
+
+## 2026-09-12 (Adopt UI/UX Design System)
+
+Agent Name:
+
+```text
+Dev 1 / Legionnaire_meet
+```
+
+What:
+
+```text
+Created AI/4_design_system.md based on GovTech 2.0 aesthetics.
+Updated AI/1_ai_rules.md to enforce framer-motion, recharts, and the new design system.
+```
+
+Why:
+
+```text
+To establish a rigid, premium aesthetic and frontend consistency across Samarth.
+```
+
+Files:
+
+```text
+AI/1_ai_rules.md
+AI/3_active_state.md
+AI/4_design_system.md
+```
+
+Testing:
+
+```text
+Verified successful creation of the design system specification.
 ```
 
 Git Status:
