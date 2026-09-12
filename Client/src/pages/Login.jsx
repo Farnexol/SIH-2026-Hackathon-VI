@@ -36,17 +36,21 @@ export default function Login() {
     }
   };
 
-  const handleBypass = async () => {
+  const handleQuickLogin = async (selectedRole) => {
     setError('');
-    const res = await login('demo@samarth.ai', 'demo123', role);
+    const res = await login('demo@samarth.ai', 'demo123', selectedRole);
     if (res.success) {
       setIsExiting(true);
       setTimeout(() => {
-        navigate(`/${role}/dashboard`);
-      }, 700);
+        navigate(`/${selectedRole}/dashboard`);
+      }, 600);
     } else {
-      setError(res.error || 'Bypass failed');
+      setError(res.error || 'Quick login failed');
     }
+  };
+
+  const handleBypass = async () => {
+    handleQuickLogin(role);
   };
 
   return (
@@ -232,14 +236,33 @@ export default function Login() {
                     Create Account
                   </Link>
                 </div>
-                <div>
-                  <button
-                    type="button"
-                    onClick={handleBypass}
-                    className="text-xs font-bold px-4 py-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-colors border border-slate-200"
-                  >
-                    Dev Bypass (Auto-Login)
-                  </button>
+                <div className="pt-2">
+                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                    Quick Demo Access (1-Click Switch)
+                  </p>
+                  <div className="grid grid-cols-3 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleQuickLogin('learner')}
+                      className="text-xs font-semibold py-2 px-2.5 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-xl transition-all border border-blue-200 cursor-pointer shadow-xs text-center"
+                    >
+                      Learner
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleQuickLogin('trainer')}
+                      className="text-xs font-semibold py-2 px-2.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-xl transition-all border border-indigo-200 cursor-pointer shadow-xs text-center"
+                    >
+                      Trainer
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleQuickLogin('admin')}
+                      className="text-xs font-semibold py-2 px-2.5 bg-purple-50 text-purple-700 hover:bg-purple-100 rounded-xl transition-all border border-purple-200 cursor-pointer shadow-xs text-center"
+                    >
+                      Admin
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

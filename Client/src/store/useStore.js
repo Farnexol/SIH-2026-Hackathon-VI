@@ -30,15 +30,51 @@ export const useStore = create(
       analytics: mockAnalytics,
       aiResponses: mockAiAdvisorResponses,
 
+      registeredUsers: [],
+
       // Actions
+      registerUser: (formData) => {
+        const newUser = {
+          ...mockUser,
+          id: `usr-${formData.employeeId || Math.floor(Math.random() * 9000 + 1000)}`,
+          name: formData.name || 'Statistical Officer',
+          email: formData.email,
+          password: formData.password,
+          department: formData.department || 'Data Analysis Division',
+          isProfileCompleted: true,
+          role: 'learner'
+        };
+        set((state) => ({ registeredUsers: [...(state.registeredUsers || []), newUser] }));
+        return { success: true, user: newUser };
+      },
+
       login: (email, password, role) => {
-        // Simplified auth check based on mockData
-        if ((email === 'demo@samarth.ai' || email === 'usr-9082') && password === 'demo123') {
-          const userObj = { ...mockUser, role: role || 'learner' };
+        const state = get();
+        const found = (state.registeredUsers || []).find(
+          (u) => (u.email?.toLowerCase() === email?.toLowerCase() || u.id === email) && (!password || u.password === password)
+        );
+        if (found) {
+          const userObj = { ...found, role: role || found.role || 'learner' };
           set({ user: userObj, isAuthenticated: true });
           return { success: true, user: userObj };
         }
-        return { success: false, error: 'Invalid credentials' };
+
+        // Demo credentials or flexible mock credentials for seamless hackathon testing
+        if (
+          (email === 'demo@samarth.ai' || email === 'usr-9082' || email?.includes('@')) &&
+          (password === 'demo123' || !password || password?.length >= 3)
+        ) {
+          const defaultName = email === 'demo@samarth.ai' ? mockUser.name : (email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1));
+          const userObj = { 
+            ...mockUser, 
+            name: defaultName,
+            email: email || 'demo@samarth.ai',
+            role: role || 'learner' 
+          };
+          set({ user: userObj, isAuthenticated: true });
+          return { success: true, user: userObj };
+        }
+        return { success: false, error: 'Invalid credentials. Enter any valid email and 4+ character password or use Quick Demo.' };
       },
 
       logout: () => {

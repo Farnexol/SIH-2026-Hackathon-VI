@@ -109,13 +109,16 @@ function ProtectedRoute({ children, allowedRole }) {
     return <Navigate to={`/${user.role || 'learner'}/profile`} replace />;
   }
 
-  // RBAC Check
-  if (allowedRole && user.role !== allowedRole) {
-    return <Navigate to={`/${user.role || 'learner'}/dashboard`} replace />;
+  // RBAC Check (case-insensitive)
+  const currentRole = user?.role?.toLowerCase() || 'learner';
+  const targetRole = allowedRole?.toLowerCase();
+
+  if (targetRole && currentRole !== targetRole) {
+    return <Navigate to={`/${currentRole}/dashboard`} replace />;
   }
 
-  if (allowedRole === 'trainer') return <TrainerLayout>{children}</TrainerLayout>;
-  if (allowedRole === 'admin') return <AdminLayout>{children}</AdminLayout>;
+  if (targetRole === 'trainer') return <TrainerLayout>{children}</TrainerLayout>;
+  if (targetRole === 'admin') return <AdminLayout>{children}</AdminLayout>;
   return <LearnerLayout>{children}</LearnerLayout>;
 }
 
@@ -147,6 +150,21 @@ export default function App() {
           <Route path="/learner/quiz/:id/result" element={<ProtectedRoute allowedRole="learner"><QuizResult /></ProtectedRoute>} />
           <Route path="/learner/analytics" element={<ProtectedRoute allowedRole="learner"><Analytics /></ProtectedRoute>} />
           <Route path="/learner/profile" element={<ProtectedRoute allowedRole="learner"><Profile /></ProtectedRoute>} />
+
+          {/* Direct & Backward Compatible Aliases */}
+          <Route path="/dashboard" element={<Navigate to="/learner/dashboard" replace />} />
+          <Route path="/competencies" element={<Navigate to="/learner/competencies" replace />} />
+          <Route path="/learning-path" element={<Navigate to="/learner/learning-path" replace />} />
+          <Route path="/courses" element={<Navigate to="/learner/courses" replace />} />
+          <Route path="/courses/:id" element={<ProtectedRoute allowedRole="learner"><CourseDetail /></ProtectedRoute>} />
+          <Route path="/materials" element={<Navigate to="/learner/materials" replace />} />
+          <Route path="/materials/upload" element={<Navigate to="/learner/materials/upload" replace />} />
+          <Route path="/quiz" element={<Navigate to="/learner/quiz" replace />} />
+          <Route path="/quiz/:id" element={<ProtectedRoute allowedRole="learner"><QuizTake /></ProtectedRoute>} />
+          <Route path="/quiz/:id/result" element={<ProtectedRoute allowedRole="learner"><QuizResult /></ProtectedRoute>} />
+          <Route path="/assessments" element={<Navigate to="/learner/quiz" replace />} />
+          <Route path="/analytics" element={<Navigate to="/learner/analytics" replace />} />
+          <Route path="/profile" element={<Navigate to="/learner/profile" replace />} />
 
           {/* =========================================
               TRAINER ROUTES
@@ -183,7 +201,8 @@ export default function App() {
 function RootRedirect() {
   const { isAuthenticated, user } = useAuth();
   if (!isAuthenticated) return <Navigate to="/login" replace />;
-  if (user?.role === 'trainer') return <Navigate to="/trainer/dashboard" replace />;
-  if (user?.role === 'admin') return <Navigate to="/admin/dashboard" replace />;
+  const role = user?.role?.toLowerCase();
+  if (role === 'trainer') return <Navigate to="/trainer/dashboard" replace />;
+  if (role === 'admin') return <Navigate to="/admin/dashboard" replace />;
   return <Navigate to="/learner/dashboard" replace />;
 }

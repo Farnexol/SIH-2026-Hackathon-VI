@@ -27,8 +27,8 @@ export const getNextId = async () => {
 };
 
 export const registerUser = async (formData) => {
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return { success: true };
+  await new Promise(resolve => setTimeout(resolve, 800));
+  return useStore.getState().registerUser(formData);
 };
 
 export const forgotPassword = async ({ email }) => {

@@ -70,7 +70,8 @@ const SECTIONS_CONFIG = {
     parentName: 'Dashboard',
     parentPath: '/learner/dashboard',
     items: [
-      { id: 'material-analysis', name: 'Material Analysis', path: '/learner/materials', icon: FileText, desc: 'Statistical manual repository' },
+      { id: 'material-analysis', name: 'Material Repository', path: '/learner/materials', icon: FileText, desc: 'Statistical manual repository' },
+      { id: 'upload-generate', name: 'Upload & Generate MCQs', path: '/learner/materials/upload', icon: FilePlus, desc: 'AI question generator from PDF/Docs' }
     ]
   },
   competency: {
