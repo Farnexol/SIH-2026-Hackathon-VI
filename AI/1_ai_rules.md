@@ -265,14 +265,13 @@ Supabase PostgreSQL
 
 # 7. FRONTEND ARCHITECTURE
 
-The project has THREE frontend applications.
+The project has TWO frontend applications.
 
 ```text
 ./Client/
 │
 ├── SuperAdmin/
-├── Admin/
-└── User/
+└── Portal/
 ```
 
 ## SuperAdmin
@@ -295,62 +294,24 @@ Do not unnecessarily build advanced features before the core CRUD functionality 
 
 ---
 
-## Admin
+## Portal
 
-The Admin application is planned.
+The Portal application is planned and will serve as the unified frontend for both Admins (Headmasters) and regular Users (Teachers).
 
-The Admin represents the headmaster/organizational authority.
+Access to specific features within the Portal is determined by Role-Based Access Control (RBAC).
 
-Conceptually:
+**Admin Role within Portal:**
+- Represents the headmaster/organizational authority.
+- Can view assigned Users, track User progress, monitor competency gaps, and manage organization-level learning activities.
 
-```text
-Organization
-      │
-      └── Admin
-             │
-             ├── User
-             ├── User
-             ├── User
-             └── User
-```
+**User Role within Portal:**
+- Represents a teacher/organizational member.
+- Can view their learning profile, complete assessments, receive training recommendations, access learning materials, and view progress.
 
-The Admin should eventually be able to:
-
-* View assigned Users.
-* Track User progress.
-* Monitor competency gaps.
-* Monitor learning activity.
-* Review relevant assessments.
-* Manage organization-level learning activities.
-
-Final Admin requirements:
+Final Portal requirements:
 
 ```text
-[FILL IN: Admin requirements]
-```
-
----
-
-## User
-
-The User application is planned.
-
-The User represents a teacher/organizational member.
-
-The User should eventually be able to:
-
-* View their learning profile.
-* View competency information.
-* Complete assessments.
-* Receive personalized training recommendations.
-* Access learning materials.
-* Take quizzes/MCQs.
-* View learning progress.
-
-Final User requirements:
-
-```text
-[FILL IN: User requirements]
+[FILL IN: Portal requirements]
 ```
 
 ---

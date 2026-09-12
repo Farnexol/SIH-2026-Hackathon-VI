@@ -105,7 +105,7 @@ User CRUD
 
 ---
 
-## Admin
+## Portal
 
 ```text
 Status: PLANNED
@@ -114,22 +114,7 @@ Status: PLANNED
 Purpose:
 
 ```text
-Organization/headmaster management
-User tracking
-```
-
----
-
-## User
-
-```text
-Status: PLANNED
-```
-
-Purpose:
-
-```text
-Teacher/member learning experience
+Unified frontend for organization headmasters (Admins) and teachers (Users) using RBAC.
 ```
 
 ---
@@ -139,8 +124,7 @@ Teacher/member learning experience
 | Area       | Primary Developer | Secondary | Files                  |
 | ---------- | ----------------- | --------- | ---------------------- |
 | SuperAdmin | [FILL IN]         | [FILL IN] | `./Client/SuperAdmin/` |
-| Admin      | [FILL IN]         | [FILL IN] | `./Client/Admin/`      |
-| User       | [FILL IN]         | [FILL IN] | `./Client/User/`       |
+| Portal     | [FILL IN]         | [FILL IN] | `./Client/Portal/`     |
 | Server     | [FILL IN]         | [FILL IN] | `./Server/`            |
 | AI         | [FILL IN]         | [FILL IN] | `./AI/`                |
 | Database   | [FILL IN]         | [FILL IN] | `./Database/`          |
@@ -377,6 +361,50 @@ Testing:
 
 ```text
 Verified successful scaffolding of Vite and creation of all placeholder directories/files.
+```
+
+Git Status:
+
+```text
+Pending push
+```
+
+---
+
+## 2026-09-12 (Consolidate Admin and User to Portal)
+
+Agent Name:
+
+```text
+Dev 1 / Legionnaire_meet
+```
+
+What:
+
+```text
+Removed empty Client/Admin and Client/User directories and replaced them with Client/Portal.
+Updated AI rules, architecture, and active state to reflect two frontend applications (SuperAdmin and Portal).
+```
+
+Why:
+
+```text
+To consolidate the organization members (Headmasters and Teachers) into a single RBAC-enabled application.
+```
+
+Files:
+
+```text
+Client/Portal/
+AI/1_ai_rules.md
+AI/2_architecture.md
+AI/3_active_state.md
+```
+
+Testing:
+
+```text
+Verified successful updating of context documentation and folder creation.
 ```
 
 Git Status:

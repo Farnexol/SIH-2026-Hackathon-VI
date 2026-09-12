@@ -34,8 +34,7 @@ All paths are relative to:
 │
 ├── Client/
 │   ├── SuperAdmin/
-│   ├── Admin/
-│   └── User/
+│   └── Portal/
 │
 ├── Server/
 │
@@ -52,18 +51,18 @@ All paths are relative to:
 
 # 2. APPLICATION ARCHITECTURE
 
-Samarth consists of three frontend applications and one shared backend.
+Samarth consists of two frontend applications and one shared backend.
 
 ```text
                          SAMARTH
                             │
-              ┌─────────────┼─────────────┐
-              │             │             │
-              ▼             ▼             ▼
-         SuperAdmin       Admin          User
-          Client App    Client App     Client App
-              │             │             │
-              └─────────────┼─────────────┘
+              ┌─────────────┴─────────────┐
+              │                           │
+              ▼                           ▼
+         SuperAdmin                    Portal
+         Client App                  Client App
+              │                           │
+              └─────────────┬─────────────┘
                             │
                             ▼
                        FastAPI Server
@@ -91,8 +90,7 @@ AI context
 ## Planned
 
 ```text
-Admin
-User
+Portal (Admin & User)
 Advanced competency system
 Personalized recommendations
 Advanced AI learning workflows
@@ -124,56 +122,18 @@ Final SuperAdmin requirements:
 
 ---
 
-# 5. ADMIN
+# 5. PORTAL
 
-Admin represents the headmaster/organizational authority.
+Portal is the planned application for the organization members. It uses Role-Based Access Control (RBAC) to determine if the logged in member is an Admin (Headmaster) or a User (Teacher).
 
-Relationship:
+Admin Role (Organization-scoped authority):
+- Manage organization-level learning activities.
+- Track User progress and monitor competency gaps.
 
-```text
-Organization
-    │
-    └── Admin
-          │
-          ├── User
-          ├── User
-          └── User
-```
-
-Admin is organization-scoped.
-
-Primary future responsibilities:
-
-```text
-User tracking
-Learning progress monitoring
-Competency monitoring
-Organization-level analytics
-```
-
-Final responsibilities:
-
-```text
-[FILL IN]
-```
-
----
-
-# 6. USER
-
-User represents the teacher/organizational member.
-
-Future responsibilities:
-
-```text
-Learning
-Assessments
-Quizzes
-MCQs
-Competency development
-Training recommendations
-Progress tracking
-```
+User Role (Teacher/member):
+- View learning profile and competencies.
+- Complete assessments, take quizzes/MCQs.
+- Receive training recommendations.
 
 Final responsibilities:
 
@@ -292,25 +252,24 @@ flowchart TD
     E --> D
 
     D -->|SuperAdmin| F[SuperAdmin Dashboard]
-    D -->|Admin| G[Admin Dashboard]
-    D -->|User| H[User Dashboard]
+    D -->|Admin/User| G[Portal Application]
 
     F --> I[Admin CRUD]
     F --> J[User CRUD]
     F --> K[Organization Management]
     F --> L[System Management]
 
-    G --> M[Organization Overview]
-    G --> N[User Tracking]
-    G --> O[Learning Progress]
-    G --> P[Competency Monitoring]
+    G -->|Admin Role| M[Organization Overview]
+    M --> N[User Tracking]
+    M --> O[Learning Progress]
+    M --> P[Competency Monitoring]
 
-    H --> Q[Learning Dashboard]
-    H --> R[Competency Profile]
-    H --> S[Training Recommendations]
-    H --> T[Learning Materials]
-    H --> U[Quiz / MCQ]
-    H --> V[Progress]
+    G -->|User Role| Q[Learning Dashboard]
+    Q --> R[Competency Profile]
+    Q --> S[Training Recommendations]
+    Q --> T[Learning Materials]
+    Q --> U[Quiz / MCQ]
+    Q --> V[Progress]
 
     T --> W[AI Processing]
     W --> X[Question Generation]
@@ -617,9 +576,7 @@ Final schema:
 │
 ├── SuperAdmin/
 │
-├── Admin/
-│
-└── User/
+└── Portal/
 ```
 
 Each frontend is an independent React/Vite application.
