@@ -270,49 +270,26 @@ pgvector (for semantic search & retrieval)
 
 # 7. FRONTEND ARCHITECTURE
 
-The project has TWO frontend applications.
+The project has ONE unified frontend application.
 
 ```text
 ./Client/
-│
-├── SuperAdmin/
-└── Portal/
 ```
 
-## SuperAdmin
+## Unified Portal
 
-The SuperAdmin application is the currently prioritized application.
-
-Purpose:
-
-```text
-System-level administration
-Admin management
-User management
-Basic CRUD
-Platform-level configuration
-```
-
-The current SuperAdmin application should remain relatively simple and practical for the hackathon.
-
-Do not unnecessarily build advanced features before the core CRUD functionality is stable.
-
----
-
-## Portal
-
-The Portal application is planned and will serve as the unified frontend for three main organizational roles: **Learner**, **Trainer**, and **Admin**.
+The Portal application serves as the unified frontend for three main organizational roles: **Learner**, **Trainer**, and **Admin**.
 
 Access to specific features within the Portal is determined by Role-Based Access Control (RBAC).
 
-**Admin Role within Portal (Headmaster/Manager):**
+**Admin Role within Portal (Organization Head/Manager):**
 - Represents the organizational authority.
 - Can view assigned workforce competency, track progress, monitor gaps, and manage organization-level activities.
 
 **Trainer Role within Portal (Subject Matter Expert):**
 - Can upload learning materials, generate AI mock tests via the RAG pipeline, review questions, and publish assessments.
 
-**Learner Role within Portal (Teacher/Official):**
+**Learner Role within Portal (Official/Employee):**
 - Represents the end-user consuming learning.
 - Can view their learning profile, complete assessments, receive training recommendations, and view competency progress.
 
@@ -329,10 +306,6 @@ Unified Learner Dashboard, Trainer Studio, and Admin Analytics views powered by 
 This is the core business relationship within an organization.
 
 ```text
-SuperAdmin
-    │
-    │ manages
-    ▼
 Organization
     │
     ├─► Admin (Organization Head, monitors workforce intelligence)
@@ -608,8 +581,6 @@ The following information is intentionally pending:
 [FILL IN: MCQ generation rules]
 
 [FILL IN: iGOT API/integration details]
-
-[FILL IN: Final database schema]
 
 [FILL IN: Deployment architecture]
 

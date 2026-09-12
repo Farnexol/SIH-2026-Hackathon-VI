@@ -97,32 +97,16 @@ Dev6
 
 # 4. CURRENT APPLICATION STATUS
 
-## SuperAdmin
+## Unified Portal
 
 ```text
-Status: ACTIVE
+Status: PLANNED (Unified frontend)
 ```
 
 Purpose:
 
 ```text
-System-level administration
-Admin CRUD
-User CRUD
-```
-
----
-
-## Portal
-
-```text
-Status: PLANNED
-```
-
-Purpose:
-
-```text
-Unified frontend for organization headmasters (Admins) and teachers (Users) using RBAC.
+Unified frontend for Learner, Trainer, and Admin using RBAC.
 ```
 
 ---
@@ -131,8 +115,7 @@ Unified frontend for organization headmasters (Admins) and teachers (Users) usin
 
 | Area       | Primary Developer | Secondary | Files                  |
 | ---------- | ----------------- | --------- | ---------------------- |
-| SuperAdmin | Dev1              | [FILL IN] | `./Client/SuperAdmin/` |
-| Portal     | Dev2 & Dev3       | [FILL IN] | `./Client/Portal/`     |
+| Client     | Dev2 & Dev3       | [FILL IN] | `./Client/`            |
 | Server     | Dev4              | [FILL IN] | `./Server/`            |
 | AI/RAG     | Dev5              | [FILL IN] | `./AI/` & `./Server/`  |
 | Design     | Dev1              | [FILL IN] | `./AI/4_design_system.md` |
@@ -265,7 +248,7 @@ Status:
 Frontend:
 
 ```text
-SuperAdmin scaffolding complete. Portal planned.
+Unified Client/ app initialized (Vite).
 ```
 
 Backend:
@@ -277,7 +260,7 @@ FastAPI planned.
 Database:
 
 ```text
-Supabase + PostgreSQL + pgvector planned.
+Supabase + PostgreSQL + pgvector schema created (`Database/sih_skill_platform_schema.sql`).
 ```
 
 AI:
@@ -502,6 +485,49 @@ Testing:
 
 ```text
 Vite server starts successfully. Note: Automated browser verification failed due to playwright driver issues, requires manual visual verification.
+```
+
+Git Status:
+
+```text
+Pending push
+```
+
+---
+
+## 2026-09-12 (Integrate Supabase SQL Schema)
+
+Agent Name:
+
+```text
+Dev 1 / Legionnaire_meet
+```
+
+What:
+
+```text
+Saved the authoritative sih_skill_platform_schema.sql to the Database/ directory.
+Updated AI/2_architecture.md and AI/1_ai_rules.md to reference the saved schema.
+```
+
+Why:
+
+```text
+To establish the final database schema, which includes the app_role (learner, trainer, admin), competencies, materials, chunking with pgvector, and assessment structures.
+```
+
+Files:
+
+```text
+Database/sih_skill_platform_schema.sql
+AI/2_architecture.md
+AI/1_ai_rules.md
+```
+
+Testing:
+
+```text
+N/A (Schema definition only)
 ```
 
 Git Status:
