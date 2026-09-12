@@ -14,6 +14,20 @@ Never create:
 ./Samarth/
 ```
 
+# 1. PLATFORM OVERVIEW
+
+The platform is an AI-enabled Skill Intelligence and Learning Platform for India's Official Statistical System.
+
+The system's core product loop is a continuous competency improvement loop:
+```text
+Profile → Assess → Detect Gap → Recommend → Learn → Assess (RAG MCQs) → Update Profile
+```
+
+The platform has three main organizational application roles (plus a system SuperAdmin):
+- **Learner** — official/employee consuming learning and taking assessments.
+- **Trainer** — subject-matter expert who uploads material and generates/publishes assessments.
+- **Admin** — organization-level manager monitoring workforce competency and gaps.
+
 All paths are relative to:
 
 ```text
@@ -124,21 +138,26 @@ Final SuperAdmin requirements:
 
 # 5. PORTAL
 
-Portal is the planned application for the organization members. It uses Role-Based Access Control (RBAC) to determine if the logged in member is an Admin (Headmaster) or a User (Teacher).
+Portal is the planned application for the organization members. It uses Role-Based Access Control (RBAC) to determine if the logged in member is an Admin (Headmaster), Trainer, or Learner (Teacher).
 
 Admin Role (Organization-scoped authority):
 - Manage organization-level learning activities.
-- Track User progress and monitor competency gaps.
+- Track workforce progress and monitor competency gaps.
 
-User Role (Teacher/member):
+Trainer Role (Subject Matter Expert):
+- Upload learning materials and process them.
+- Generate mock tests via Gemini/pgvector RAG pipeline.
+- Review, edit, and publish assessments.
+
+Learner Role (Teacher/member):
 - View learning profile and competencies.
 - Complete assessments, take quizzes/MCQs.
-- Receive training recommendations.
+- Receive personalized training recommendations from iGOT/NSSTA.
 
 Final responsibilities:
 
 ```text
-[FILL IN]
+Host the Learner Dashboard, Trainer Studio, and Admin Analytics.
 ```
 
 ---
@@ -329,47 +348,44 @@ Final competency methodology:
 
 ---
 
-# 12. AI LEARNING MATERIAL FLOW
+# 12. AI LEARNING MATERIAL & RAG PIPELINE
 
 ```text
-Upload Material
-       │
-       ▼
-File Validation
-       │
-       ▼
-Text Extraction
-       │
-       ▼
-Content Processing
-       │
-       ▼
-AI Context Construction
-       │
-       ▼
-Question Generation
-       │
-       ▼
-Structured Output Validation
-       │
-       ▼
-Quality Validation
-       │
-       ▼
-Review
-       │
-       ▼
-Quiz Publication
+              TRAINER REQUEST
+                    │
+          POST /assessments/generate
+                    │
+            Build retrieval query
+                    │
+              Embed query text
+                    │
+            pgvector top-K search
+                    │
+        Relevant material chunks
+                    │
+       Build grounded Gemini prompt
+                    │
+                 Gemini
+                    │
+        Structured JSON questions
+                    │
+        Schema + quality validation
+                    │
+            Save draft assessment
+                    │
+            Trainer review/edit
+                    │
+                 Publish
 ```
 
 Supported formats:
 
 ```text
-[FILL IN: PDF]
-[FILL IN: DOCX]
-[FILL IN: PPTX]
-[FILL IN: TXT]
-[FILL IN: Other]
+PDF
+DOCX
+PPTX
+TXT
+Video/Audio (future)
 ```
 
 ---
@@ -527,7 +543,7 @@ erDiagram
 Final schema:
 
 ```text
-[FILL IN: Approved Supabase schema]
+Supabase schema configured for auth.users, user_profiles (learner, trainer, admin), learner_competencies, training_materials, material_chunks (vector(768)), and mock_test_generations.
 ```
 
 ---
@@ -535,7 +551,7 @@ Final schema:
 # 14. SERVER STRUCTURE
 
 ```text
-./Server/
+./Server/          
 │
 ├── app/
 │   ├── main.py

@@ -46,6 +46,14 @@ Push
 
 Never push before updating the changelog.
 
+## AI EXECUTION RULE FOR GIT
+
+**CRITICAL:** AI Agents must **NEVER** automatically run `git add`, `git commit`, or `git push` via terminal commands, **UNLESS** the current developer is explicitly identified as `Dev 1 / Legionnaire_meet`.
+
+For all other developers, the AI must:
+1. Prepare the commit message and changelog.
+2. Stop and explicitly tell the human developer: *"It is now safe to run `git add .`, `git commit`, and `git push`."*
+3. Wait for the human to execute the commands manually.
 ---
 
 # 2. DEVELOPER BOOT
@@ -79,10 +87,10 @@ Dev6
 | Developer | Name      | Git Username | Git Email | Primary Area | Status    |
 | --------- | --------- | ------------ | --------- | ------------ | --------- |
 | Dev1      | Legionnaire_meet | MeetRaval91  | hetalraval1209@gmail.com | Dynamic      | ACTIVE    |
-| Dev2      | [FILL IN] | [FILL IN]    | [FILL IN] | [FILL IN]    | [FILL IN] |
-| Dev3      | [FILL IN] | [FILL IN]    | [FILL IN] | [FILL IN]    | [FILL IN] |
-| Dev4      | [FILL IN] | [FILL IN]    | [FILL IN] | [FILL IN]    | [FILL IN] |
-| Dev5      | [FILL IN] | [FILL IN]    | [FILL IN] | [FILL IN]    | [FILL IN] |
+| Dev2      | [FILL IN] | [FILL IN]    | [FILL IN] | Frontend (Learner)    | [FILL IN] |
+| Dev3      | [FILL IN] | [FILL IN]    | [FILL IN] | Frontend (Admin/Trainer)    | [FILL IN] |
+| Dev4      | [FILL IN] | [FILL IN]    | [FILL IN] | Backend (FastAPI Core)    | [FILL IN] |
+| Dev5      | [FILL IN] | [FILL IN]    | [FILL IN] | AI / RAG Pipeline    | [FILL IN] |
 | Dev6      | [FILL IN] | [FILL IN]    | [FILL IN] | [FILL IN]    | [FILL IN] |
 
 ---
@@ -123,12 +131,12 @@ Unified frontend for organization headmasters (Admins) and teachers (Users) usin
 
 | Area       | Primary Developer | Secondary | Files                  |
 | ---------- | ----------------- | --------- | ---------------------- |
-| SuperAdmin | [FILL IN]         | [FILL IN] | `./Client/SuperAdmin/` |
-| Portal     | [FILL IN]         | [FILL IN] | `./Client/Portal/`     |
-| Server     | [FILL IN]         | [FILL IN] | `./Server/`            |
-| AI         | [FILL IN]         | [FILL IN] | `./AI/`                |
-| Design     | [FILL IN]         | [FILL IN] | `./AI/4_design_system.md` |
-| Database   | [FILL IN]         | [FILL IN] | `./Database/`          |
+| SuperAdmin | Dev1              | [FILL IN] | `./Client/SuperAdmin/` |
+| Portal     | Dev2 & Dev3       | [FILL IN] | `./Client/Portal/`     |
+| Server     | Dev4              | [FILL IN] | `./Server/`            |
+| AI/RAG     | Dev5              | [FILL IN] | `./AI/` & `./Server/`  |
+| Design     | Dev1              | [FILL IN] | `./AI/4_design_system.md` |
+| Database   | Dev4              | [FILL IN] | `./Database/`          |
 
 ---
 
@@ -257,37 +265,37 @@ Status:
 Frontend:
 
 ```text
-[FILL IN]
+SuperAdmin scaffolding complete. Portal planned.
 ```
 
 Backend:
 
 ```text
-[FILL IN]
+FastAPI planned.
 ```
 
 Database:
 
 ```text
-[FILL IN]
+Supabase + PostgreSQL + pgvector planned.
 ```
 
 AI:
 
 ```text
-[FILL IN]
+Gemini API + pgvector RAG pipeline planned.
 ```
 
 iGOT:
 
 ```text
-[FILL IN]
+Integration planned.
 ```
 
 Authentication:
 
 ```text
-[FILL IN]
+Supabase Auth planned. SuperAdmin bypass active.
 ```
 
 ---
@@ -449,6 +457,51 @@ Testing:
 
 ```text
 Verified successful creation of the design system specification.
+```
+
+Git Status:
+
+```text
+Pending push
+```
+
+---
+
+## 2026-09-12 (One-Shot SuperAdmin Frontend)
+
+Agent Name:
+
+```text
+Dev 1 / Legionnaire_meet
+```
+
+What:
+
+```text
+Fully scaffolded the SuperAdmin React frontend.
+- Setup routing (react-router-dom) with ProtectedRoute.
+- Setup global state (zustand) with useAuthStore and useMockStore.
+- Created UI components: Button, Badge, StatCard, Modal, EmptyState, PageHeader.
+- Created pages: Login, Dashboard, Organizations, Admins, Users.
+- Applied GovTech 2.0 aesthetics with tailwindcss and framer-motion.
+```
+
+Why:
+
+```text
+To provide a complete, interactive one-shot implementation of the SuperAdmin client for the hackathon demo.
+```
+
+Files:
+
+```text
+Client/SuperAdmin/src/*
+```
+
+Testing:
+
+```text
+Vite server starts successfully. Note: Automated browser verification failed due to playwright driver issues, requires manual visual verification.
 ```
 
 Git Status:

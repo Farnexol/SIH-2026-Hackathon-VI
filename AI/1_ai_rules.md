@@ -250,13 +250,14 @@ JWT Authentication
 ## Database
 
 ```text
-Supabase PostgreSQL
+Supabase (PostgreSQL, Supabase Auth, Storage, pgvector)
 ```
 
 ## AI
 
 ```text
-[FILL IN: AI provider/model]
+Gemini API (for LLM generation/reasoning)
+pgvector (for semantic search & retrieval)
 ```
 
 ## iGOT
@@ -300,29 +301,32 @@ Do not unnecessarily build advanced features before the core CRUD functionality 
 
 ## Portal
 
-The Portal application is planned and will serve as the unified frontend for both Admins (Headmasters) and regular Users (Teachers).
+The Portal application is planned and will serve as the unified frontend for three main organizational roles: **Learner**, **Trainer**, and **Admin**.
 
 Access to specific features within the Portal is determined by Role-Based Access Control (RBAC).
 
-**Admin Role within Portal:**
-- Represents the headmaster/organizational authority.
-- Can view assigned Users, track User progress, monitor competency gaps, and manage organization-level learning activities.
+**Admin Role within Portal (Headmaster/Manager):**
+- Represents the organizational authority.
+- Can view assigned workforce competency, track progress, monitor gaps, and manage organization-level activities.
 
-**User Role within Portal:**
-- Represents a teacher/organizational member.
-- Can view their learning profile, complete assessments, receive training recommendations, access learning materials, and view progress.
+**Trainer Role within Portal (Subject Matter Expert):**
+- Can upload learning materials, generate AI mock tests via the RAG pipeline, review questions, and publish assessments.
+
+**Learner Role within Portal (Teacher/Official):**
+- Represents the end-user consuming learning.
+- Can view their learning profile, complete assessments, receive training recommendations, and view competency progress.
 
 Final Portal requirements:
 
 ```text
-[FILL IN: Portal requirements]
+Unified Learner Dashboard, Trainer Studio, and Admin Analytics views powered by robust RBAC.
 ```
 
 ---
 
-# 8. ADMIN → USER RELATIONSHIP
+# 8. ADMIN → TRAINER → LEARNER RELATIONSHIP
 
-This is a core business relationship.
+This is the core business relationship within an organization.
 
 ```text
 SuperAdmin
@@ -331,17 +335,14 @@ SuperAdmin
     ▼
 Organization
     │
-    ▼
-Admin / Headmaster
+    ├─► Admin (Organization Head, monitors workforce intelligence)
     │
-    │ manages / tracks
-    ▼
-Users / Teachers
+    ├─► Trainer (Creates assessments, manages material)
+    │
+    └─► Learner (Takes assessments, improves competency)
 ```
 
-An Admin is organization-scoped.
-
-An Admin MUST NOT automatically have access to Users belonging to another organization.
+An Admin is organization-scoped and MUST NOT automatically have access to Learners belonging to another organization.
 
 Cross-organization access requires an explicitly defined permission.
 
